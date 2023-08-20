@@ -15,8 +15,4 @@ class King < ChessPiece
       [col_idx + 1, row_idx - 1], [col_idx - 1, row_idx - 1]
     ].select { |col, row| within_boundary?(col, row) }
   end
-
-  def within_boundary?(col, row)
-    col < COLUMNS.length && col >= 0 && row < ROWS.size && row >= 0
-  end
 end

@@ -20,4 +20,8 @@ class ChessPiece
     column, row = position.to_s.split('')
     position.to_s.length == 2 && (COLUMNS.include?(column) && ROWS.include?(row))
   end
+
+  def within_boundary?(col, row)
+    col < COLUMNS.length && col >= 0 && row < ROWS.size && row >= 0
+  end
 end
