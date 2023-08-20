@@ -4,7 +4,8 @@ describe 'ChessPiece' do
   context '#initialize' do
     it 'should initialize a chess piece with position' do
       piece = ChessPiece.new('A1')
-      expect(piece.position).to eq('A1')
+      expect(piece.row).to eq('1')
+      expect(piece.column).to eq('A')
     end
 
     it 'should raise error if row is greater than chess board boundary' do

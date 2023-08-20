@@ -1,10 +1,10 @@
 class ChessPiece
-  attr_accessor :position
+  attr_accessor :row, :column
 
   def initialize(position)
     raise 'error: invalid_position' unless position_valid?(position)
 
-    @position = position
+    @column, @row = position.split('')
   end
 
   def possible_next_moves
@@ -14,8 +14,8 @@ class ChessPiece
   private
 
   def position_valid?(position)
-    col, row = position.to_s.split('')
-    position.to_s.length == 2 && (valid_columns.include?(col) && valid_rows.include?(row))
+    column, row = position.to_s.split('')
+    position.to_s.length == 2 && (valid_columns.include?(column) && valid_rows.include?(row))
   end
 
   def valid_columns
