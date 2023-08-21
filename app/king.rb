@@ -1,18 +1,13 @@
 class King < ChessPiece
   def possible_next_moves
-    valid_indices.map { |col, row| "#{COLUMNS[col]}#{ROWS[row]}" }.sort
-  end
-
-  private
-
-  def valid_indices
-    col_idx = COLUMNS.index(column)
-    row_idx = ROWS.index(row)
-    [
-      [col_idx + 1, row_idx], [col_idx - 1, row_idx],
-      [col_idx, row_idx + 1], [col_idx, row_idx - 1],
-      [col_idx + 1, row_idx + 1], [col_idx - 1, row_idx + 1],
-      [col_idx + 1, row_idx - 1], [col_idx - 1, row_idx - 1]
-    ].select { |col, row| within_boundary?(col, row) }
+    horizontal_moves = next_moves_in_direction(col_dir: 1, row_dir: 0, no_moves: 1) + \
+                       next_moves_in_direction(col_dir: -1, row_dir: 0, no_moves: 1)
+    vertical_moves = next_moves_in_direction(col_dir: 0, row_dir: 1, no_moves: 1) + \
+                     next_moves_in_direction(col_dir: 0, row_dir: -1, no_moves: 1)
+    diagonal_moves = next_moves_in_direction(col_dir: 1, row_dir: 1, no_moves: 1) + \
+                     next_moves_in_direction(col_dir: -1, row_dir: -1, no_moves: 1) + \
+                     next_moves_in_direction(col_dir: 1, row_dir: -1, no_moves: 1) + \
+                     next_moves_in_direction(col_dir: -1, row_dir: 1, no_moves: 1)
+    (horizontal_moves + vertical_moves + diagonal_moves).sort
   end
 end

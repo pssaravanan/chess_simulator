@@ -24,4 +24,16 @@ class ChessPiece
   def within_boundary?(col, row)
     col < COLUMNS.length && col >= 0 && row < ROWS.size && row >= 0
   end
+
+  def next_moves_in_direction(col_dir:, row_dir:, no_moves: Float::INFINITY)
+    next_moves = []
+    next_col_idx = COLUMNS.index(column) + col_dir
+    next_row_idx = ROWS.index(row) + row_dir
+    while within_boundary?(next_col_idx, next_row_idx) && next_moves.size < no_moves
+      next_moves << "#{COLUMNS[next_col_idx]}#{ROWS[next_row_idx]}"
+      next_col_idx += col_dir
+      next_row_idx += row_dir
+    end
+    next_moves
+  end
 end
