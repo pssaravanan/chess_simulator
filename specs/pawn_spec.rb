@@ -1,6 +1,7 @@
 require './specs/spec_helper'
 
 describe 'Pawn' do
+  it_behaves_like 'a chess piece', Pawn
   context '#possible_next_moves' do
     it 'should return posible next moves given pawn position' do
       piece = Pawn.new('G2')

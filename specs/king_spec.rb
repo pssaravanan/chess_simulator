@@ -1,6 +1,7 @@
 require './specs/spec_helper'
 
 describe 'King' do
+  it_behaves_like 'a chess piece', King
   context '#possible_next_moves' do
     it 'should return posible next moves given king position' do
       piece = King.new('D5')

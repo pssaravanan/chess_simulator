@@ -1,29 +1,29 @@
 require './specs/spec_helper'
 
-describe 'ChessPiece' do
-  context '#initialize' do
+shared_examples 'a chess piece' do |chess_piece_klass|
+  context "#{chess_piece_klass}#initialize" do
     it 'should initialize a chess piece with position' do
-      piece = ChessPiece.new('A1')
+      piece = chess_piece_klass.new('A1')
       expect(piece.row).to eq('1')
       expect(piece.column).to eq('A')
     end
 
     it 'should raise error if row is greater than chess board boundary' do
-      expect{
-        ChessPiece.new('I1')
-      }.to raise_error 'error: invalid_position'
+      expect do
+        chess_piece_klass.new('I1')
+      end.to raise_error 'error: invalid_position'
     end
 
     it 'should raise error if col is greater than chess board boundary' do
-      expect{
-        ChessPiece.new('A9')
-      }.to raise_error 'error: invalid_position'
+      expect do
+        chess_piece_klass.new('A9')
+      end.to raise_error 'error: invalid_position'
     end
 
     it 'should raise error if position string length greater than 2' do
-      expect{
-        ChessPiece.new('A10')
-      }.to raise_error 'error: invalid_position'
+      expect do
+        chess_piece_klass.new('A10')
+      end.to raise_error 'error: invalid_position'
     end
   end
 end

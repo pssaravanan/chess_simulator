@@ -1,6 +1,7 @@
 require './specs/spec_helper'
 
 describe Queen do
+  it_behaves_like 'a chess piece', Queen
   context '#possible_next_moves' do
     it 'should return possible next moves' do
       expect(Queen.new('E4').possible_next_moves).to eq(%w[A4 B4 C4 D4 F4 G4 H4 E1 E2 E3 E5 E6 E7
